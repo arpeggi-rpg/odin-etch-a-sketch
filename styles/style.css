@@ -1,3 +1,11 @@
 #gridContainer {
     display: flex;
+    flex-wrap: wrap;
+    width: 80vh;
+    height: 80vh;
+    margin: auto;
+}
+
+.square {
+    flex-grow: 1;
 }
