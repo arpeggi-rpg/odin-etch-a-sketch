@@ -29,16 +29,13 @@ const getRGBAColor = function (cssValue) {
 }
 
 const darkenColor = function (color) {
-    // increment alpha of shading square by 28
     color = getRGBAColor(color);
     if (JSON.stringify(color) === JSON.stringify([0, 0, 0])) {return;}
     let a = color.at(3)
     a += 0.11;
-    // if a >= 252, a = 255
     if (a >= 0.99) {
         a = 1;
     }
-    // csscolor convert and return
     color = color.with(3, a);
     return getCSSColor(color);
 }
