@@ -1,14 +1,18 @@
+const pageBody = document.querySelector('body');
 const resizeSlider = document.querySelector('#resizeSlider');
 resizeSlider.addEventListener('change', (event) => regenGrid(event.target.value));
 const currentSize = document.querySelector('#currentSize');
 const gridContainer = document.querySelector('#gridContainer');
 let gridClickState = false;
 gridContainer.addEventListener('mousedown', (event) => {gridClickState = true; event.preventDefault()});
-gridContainer.addEventListener('mouseup', (event) => {gridClickState = false; event.preventDefault()});
+pageBody.addEventListener('mouseup', (event) => {gridClickState = false;});     // Stop drawing when user unclicks anywhere
+pageBody.addEventListener('mouseleave', (event) => {gridClickState = false;});  // Stop drawing if cursor leaves page
 
 
 const getSquareHeight = function (gridSize) {
-    return (gridContainer.offsetHeight / gridSize).toString();
+    let computedHeight = getComputedStyle(gridContainer).height;
+    computedHeight = +computedHeight.match(/([0-9])?[.0-9]+/g);
+    return (computedHeight / gridSize).toString();
 }
 
 const genBaseColor = function () {
@@ -66,6 +70,14 @@ const generateGrid = function (gridSize) {
         square.style.height = square.style.width;
         square.addEventListener('mouseenter',  () => {
             if (!gridClickState) {return}
+            if (!square.style.backgroundColor) {
+                square.style.backgroundColor = getCSSColor(genBaseColor());
+            }
+            else {
+                shadingSquare.style.backgroundColor = darkenColor(shadingSquare.style.backgroundColor);
+            }
+        });
+        square.addEventListener('mousedown', () => {
             if (!square.style.backgroundColor) {
                 square.style.backgroundColor = getCSSColor(genBaseColor());
             }
