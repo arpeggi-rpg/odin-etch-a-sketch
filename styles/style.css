@@ -17,6 +17,8 @@ header {
 h1 {
     font-family:'Courier New', Courier, monospace;
     font-size: 36px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 #gridContainer {
@@ -26,6 +28,7 @@ h1 {
     width: 80vh;
     height: 80vh;
     margin: auto;
+    margin-top: 20px;
     align-self: center;
     background-color: #292929;
 }
@@ -34,9 +37,15 @@ h1 {
     align-self: center;
     display: flex;
     gap: 10px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
-    margin: 20px;
+    padding-bottom: 12px;
+    margin: 12px;
+}
+
+#resizeSlider {
+    accent-color: rgb(114, 114, 114);
+    width: 35vw;
 }
 
 .square {
@@ -44,5 +53,10 @@ h1 {
 }
 
 footer {
-    align-self: center;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 2px solid gray;
+    background-color: #282828;
 }
